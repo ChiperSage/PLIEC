@@ -19,7 +19,7 @@ class Main extends CI_Controller {
 	{
 		$data['category'] = $this->main_m->get_category();
 		$data['latest_posts'] = $this->main_m->get_post(array('limit'=>9));
-
+		$data['popular_posts'] = $this->main_m->get_post_popular();
 
 		$data['count_post'] = $this->main_m->count('wp_posts','ID');
 		$data['count_category'] = $this->main_m->count('categories','category_id');
@@ -37,6 +37,7 @@ class Main extends CI_Controller {
 		$post = $this->main_m->get_post_detail($id);
 		$data['post'] = $post['result'];
 		$data['latest_category'] = $this->main_m->get_category();
+		$data['category_name'] = $this->main_m->get_category_name();
 		$data['latest_post'] = $this->main_m->get_post(array('limit'=>3));
 
 		if($post['count'] > 0){
@@ -44,6 +45,8 @@ class Main extends CI_Controller {
 		}else{
 			$this->load->view('classix/404',$data);
 		}
+
+		$this->main_m->post_hit($id);
 	}
 
 	public function archive($page = 0)

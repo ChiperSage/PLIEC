@@ -68,8 +68,8 @@
         </div>
       </form>
 
-      <!-- <a href="<?php echo base_url('auth/register') ?>" class="text-center">Register a new membership</a><br> -->
-      <!-- <a href="<?php echo base_url('auth/forgot_password') ?>" class="text-center">Forgot password?</a> -->
+      <a href="<?php echo base_url('auth/register') ?>" class="text-center">Register a new membership</a><br>
+      <a href="<?php echo base_url('auth/forgot_password') ?>" class="text-center">Forgot password?</a>
 
   </div>
   <!-- /.login-box-body -->

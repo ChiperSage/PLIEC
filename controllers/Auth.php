@@ -24,8 +24,6 @@ class Auth extends CI_Controller {
 				redirect('moderator', 'refresh');
 			}elseif($this->ion_auth->in_group('subscriber')){
 				redirect('subscriber', 'refresh');
-			}elseif($this->ion_auth->in_group('author')){
-				redirect('author', 'refresh');
 			}
 		}else{
 			redirect('admin', 'refresh');
@@ -58,8 +56,7 @@ class Auth extends CI_Controller {
 				// if the login was un-successful
 				// redirect them back to the login page
 				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect('auth/login', 'refresh'); 
-				// use redirects instead of loading views for compatibility with MY_Controller libraries
+				redirect('auth/login', 'refresh'); // use redirects instead of loading views for compatibility with MY_Controller libraries
 			}
 		}
 		else
@@ -122,7 +119,9 @@ class Auth extends CI_Controller {
 			// redirect them back to the admin page
 			$this->session->set_flashdata('message', $this->ion_auth->messages());
 			redirect("auth/login", 'refresh');
-		}else{
+		}
+		else
+		{
 			// set the flash data error message if there is one
 			$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 

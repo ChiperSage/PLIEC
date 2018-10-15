@@ -41,10 +41,21 @@ class Post_m extends CI_Model{
         return $this->db->get_where('categories',array())->result();
     }
 
+    // sortir category berdasarkan parent child
+    public function get_category_select2()
+    {
+        $str = "SELECT 
+            a.category_id,a.category_parent, a.category_id as id, a.category_name, b.category_id AS parent
+        FROM categories a 
+        LEFT JOIN categories b ON b.category_id = a.category_parent
+        ORDER BY COALESCE (parent,id), parent IS NOT NULL, id";
+        return $this->db->query($str)->result();
+    }
+
     public function create()
     {
         $data['post_title'] = $this->input->post('title');
-        $data['post_name'] = strtolower(url_title($this->input->post('name')));
+        $data['post_name'] = strtolower(url_title($this->input->post('title')));
         $data['post_content'] = $this->input->post('content');
         $data['post_tag'] = $this->input->post('tag');
         $data['post_status'] = $this->input->post('status');
@@ -68,7 +79,7 @@ class Post_m extends CI_Model{
     public function update($filter)
     {
         $data['post_title'] = $this->input->post('title');
-        $data['post_name'] = strtolower(url_title($this->input->post('name')));
+        $data['post_name'] = strtolower(url_title($this->input->post('title')));
         $data['post_content'] = $this->input->post('content');
         $data['post_tag'] = $this->input->post('tag');
         $data['post_status'] = $this->input->post('status');

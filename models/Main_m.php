@@ -100,39 +100,33 @@ class Main_m extends CI_Model {
 		return $this->db->get_where($tb, $filter)->num_rows();
 	}
 
-	// public function ajaxrelated($id)
-	// {
-	// 	$this->db->get_where('tbl_article', array('Article_Id' => $id));
-	// 	$query = $this->db->get();
-	// 	$post = $query->row();
+	public function get_post_popular()
+	{
+		$date = date('Y-m-d H:i:s');
+		return $this->db->query("SELECT * FROM 
+			(SELECT a.*,c.category_name,d.first_name,d.last_name FROM wp_posts a
+			LEFT JOIN wp_posts_categories b ON a.ID = b.post_id
+			LEFT JOIN categories c ON b.category_id = c.category_id
+			LEFT JOIN users d ON a.post_author = d.id
+			WHERE post_type = 'post' AND post_status = 'publish' AND post_date <= '$date' 
+			GROUP BY ID
+			ORDER BY ID DESC
+			LIMIT 50) as temp ORDER BY post_view DESC LIMIT 9
+			")->result();
+	}
 
-	// 	$tags = $post->Article_Tag;
-	// 	$tag = $tags[0];
+	public function get_category_name()
+    {
+        $list = array();
+        $category = $this->db->get_where('categories',array())->result();
+        foreach ($category as $value) {
+            $list[$value->category_id] = $value->category_name;
+        }
+        return $list;
+    }
 
-	// 	$this->db->select('Article_Id, Article_Name, Article_Slug');
-	// 	$this->db->from('tbl_article');
-	// 	$this->db->where("Article_Tag LIKE '%$tag%'");
-	// 	$this->db->order('Article_DateCreate','DESC');
-	// 	$this->db->limit(5, 0);
-	// 	$query = $this->db->get();
-	// 	return $query->result();
-	// }
-
-	
-
-	// public function view_inc($id = 0)
-	// {
-	// 	if($this->session->userdata('logged_in') != true)
-	// 	{
-	// 		$key = array('Article_Id' => $id);
-	// 		$this->db->select('Article_View');
-	// 		$this->db->from('tbl_article');		
-	// 		$this->db->where($key);
-	// 		$query = $this->db->get();
-	// 		$post = $query->row();
-
-	// 		$data = array('Article_View' => $post->Article_View + 1);
-	// 		$this->db->update('tbl_article', $data, $key);
-	// 	}
-	// }
+	public function post_hit($id = 0)
+	{
+		$this->db->query("UPDATE wp_posts SET post_view = (post_view + 1) WHERE ID = '$id'");
+	}
 }

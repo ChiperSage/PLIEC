@@ -32,13 +32,11 @@
 								<td> <?php echo $value->username ?> </td>
 								<td>
 									<?php
-									$var = $value->post_category;									
-									if(!empty($var) && !is_numeric($var)){
-										$var2 = unserialize($var);										
-										if(is_array($var2)){
-										foreach ($var2 as $id) {
+									if(!empty($value->post_category) || !is_numeric($value->post_category)){
+										$cat = unserialize($value->post_category);
+										foreach ($cat as $id) {
 											echo $category[$id].', ';
-										}}
+										}
 									}
 									?>
 								</td>

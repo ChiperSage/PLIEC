@@ -34,7 +34,7 @@
 	<link rel="stylesheet" href="http://demo.graygrids.com/themes/classix-demo/assets/css/bootstrap-select.min.css">
 </head>
 <body>
-
+	
 	<div class="header">
 		<nav class="navbar navbar-default main-navigation" role="navigation">
 			<div class="container">
@@ -46,7 +46,10 @@
 						<span class="icon-bar"></span>
 					</button>
 
-					<a class="navbar-brand logo" href="<?php echo base_url() ?>"><img src="<?php echo site_url() ?>assets/themes/classix/images/logo2.png" alt=""></a>
+					<a class="navbar-brand logo" href="<?php echo base_url() ?>">
+						<!-- <img src="<?php echo site_url() ?>assets/themes/classix/images/logo2.png" alt="">  -->
+						<i class="fa fa-home fa-3x"></i>
+					</a>
 				</div>
 
 				<div class="collapse navbar-collapse" id="navbar">
@@ -68,14 +71,14 @@
 <?php echo $output ?>
 
 <footer>
-	<section class="footer-Content">
+	<!-- <section class="footer-Content">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3 col-sm-6 col-xs-12 wow fadeIn" data-wow-delay="0">
 					<div class="widget">
 						<h3 class="block-title">About us</h3>
 						<div class="textwidget">
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lobortis tincidunt est, et euismod purus suscipit quis. Etiam euismod ornare elementum. Sed ex est, consectetur eget facilisis sed, auctor ut purus.</p>
+							<p></p>
 						</div>
 					</div>
 				</div>
@@ -104,22 +107,22 @@
 				</div>
 			</div>
 		</div>
-	</section>
+	</section> -->
 
 	<div id="copyright">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="site-info pull-left">
-						<p>All copyrights reserved &copy; 2018</p>
+						<p>Procurement Literature Electronic &copy; 2018</p>
 					</div>
-					<div class="bottom-social-icons social-icon pull-right">
+					<!-- <div class="bottom-social-icons social-icon pull-right">
 						<a class="facebook" target="_blank" href="#"><i class="fa fa-facebook"></i></a>
 						<a class="twitter" target="_blank" href="#"><i class="fa fa-twitter"></i></a>
 						<a class="youtube" target="_blank" href="#"><i class="fa fa-youtube"></i></a>
 						<a class="google-plus" target="_blank" href="#"><i class="fa fa-google-plus"></i></a>
 						<a class="linkedin" target="_blank" href="#"><i class="fa fa-linkedin"></i></a>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>

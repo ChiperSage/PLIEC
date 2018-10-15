@@ -109,7 +109,7 @@ if($status == 'publish'){
                             </div>   
 
                             <button name="submit" class="btn btn-info">Update</button>
-                            <a href="<?php echo base_url('moderator') ?>" class="btn btn-danger">Back</a>
+                            <a href="<?php echo base_url('author') ?>" class="btn btn-danger">Back</a>
                         </div>
                         <div class="clearfix"></div>            
                     </div>

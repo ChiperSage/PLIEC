@@ -2,7 +2,23 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h1 class="page-title">Archive</h1>
+				<!-- <h1 class="page-title">Archive</h1> -->
+
+				<div class="row search-bar">
+					<div class="advanced-search">
+						<form class="search-form" action="<?php echo site_url('main/archive/0/') ?>" method="get">
+							
+							<div class="col-md-9 col-sm-8 search-col">
+								<input class="form-control keyword" name="keyword" value="" placeholder="Masukan kata kunci" type="text">
+								<i class="fa fa-search"></i>
+							</div>
+							<div class="col-md-3 col-sm-4 search-col">
+								<button class="btn btn-common btn-search btn-block"><strong>Search</strong></button>
+							</div>
+						</form>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
@@ -87,7 +103,7 @@
 					</ul>
 				</div>
 
-					<div class="widget tag">
+					<!-- <div class="widget tag">
 						<div class="widget-title">
 							<h4>Popular Tags</h4>
 						</div>
@@ -98,7 +114,7 @@
 						<a href="#"> Tops</a>
 						<a href="#"> Sell Off</a>
 						<a href="#"> Women Fashion</a>
-					</div>
+					</div> -->
 				<!-- <div class="inner-box">
 					<div class="widget-title">
 						<h4>Advertisement</h4>

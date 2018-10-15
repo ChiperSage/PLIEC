@@ -12,7 +12,9 @@
       </div>
       <!-- /.box-header -->
       <div class="box-body">
+
         <?php echo $this->session->flashdata('msg') ?>
+
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>

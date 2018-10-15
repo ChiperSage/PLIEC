@@ -1,8 +1,15 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">Home</a></li>
+    <li class="breadcrumb-item"><a href="#">Library</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Data</li>
+  </ol>
+</nav>
+
 <div id="content">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
-
 				<div class="blog-post single-post">
 
 					<!-- <div class="post-thumb">
@@ -13,15 +20,33 @@
 					</div> -->
 
 					<div class="post-content">
+
 						<h4 class="post-title"><a href="#"><?php echo $post->post_title ?></a></h4>
 						<div class="meta">
 							<span class="meta-part"><a href="#"><i class="fa fa-user"></i> <?php echo $post->first_name.' '.$post->last_name ?> </a></span>
 							<span class="meta-part">
 								<a href="#"><i class="fa fa-clock-o"></i> <?php echo date('d F Y - H:i',strtotime($post->post_date)) ?></a>
 							</span>
-							<span class="meta-part"><a href="#"><i class="fa fa-folder"></i> <?php //print_r($post->post_category) ?></a></span>
+							<span class="meta-part"><a href="#">
+								<i class="fa fa-folder"></i> 
+								<?php
+								if(!empty($post->post_category)){
+								$cat = unserialize($post->post_category);
+									foreach ($cat as $value) {
+										echo $category_name[$value].', ';
+									}
+								}
+								?>
+							</a></span>
 						</div>
 						<?php echo $post->post_content ?>
+						Tag: <?php $tags = explode(',', $post->post_tag) ?>
+						
+						<?php 
+						foreach ($tags as $tag) { ?>
+						<a class="label label-primary" href="<?php echo site_url() ?>"><?php echo $tag ?></a>&nbsp;
+						<?php } ?>
+						
 					</div>
 
 				</div>

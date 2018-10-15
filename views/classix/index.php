@@ -36,7 +36,7 @@
 								</div>
 							</div> -->
 							<div class="col-md-9 col-sm-8 search-col">
-								<input class="form-control keyword" name="keyword" value="" placeholder="Enter Keyword" type="text">
+								<input class="form-control keyword" name="keyword" value="" placeholder="Masukan kata kunci" type="text">
 								<i class="fa fa-search"></i>
 							</div>
 							<div class="col-md-3 col-sm-4 search-col">
@@ -94,13 +94,20 @@
 
 	<div class="features_x">
 		<div class="container tab-content">
-			
-			<ul class="list-inline text-uppercase">
-				<li><h2><a href="#home" aria-controls="home" role="tab" data-toggle="tab">latest</a></h2></li>
-				<li><h2><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">popular</a></h2></li>
+
+<div class="tabs">
+  <div class="tab-button-outer">
+	
+			<ul id="tab-button" class="text-uppercase">
+				<li><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><h4>artikel terbaru</h4></a></li>
+				<li><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><h4>artikel populer</h4></a></li>
 			</ul>
 
+  </div>
+</div>
+
 			<hr>
+			
 			<div role="tabpanel" class="row tab-pane active" id="home">
 				<?php 
 				$i = 0;
@@ -108,7 +115,7 @@
 				$i++;
 				?>
 				<div class="col-md-4 col-sm-6">
-					<div class="features-box wow" data-wow-delay="0.1s">
+					<div class="features-box">
 						<div class="features-icon">
 							<i class="fa fa-file">
 							</i>
@@ -119,7 +126,7 @@
 							</h4>
 							<small> <i class="fa fa-folder"></i> &nbsp; <?php echo $value->category_name ?></small>
 							<p>
-								<?php echo word_limiter($value->post_content,20); ?>
+								<?php echo word_limiter(strip_tags($value->post_content),20); ?>
 							</p>
 							<small> <i class="fa fa-user"></i> &nbsp; <?php echo $value->first_name.' '.$value->last_name ?></small>
 						</div>
@@ -130,14 +137,15 @@
 				}
 				?>
 			</div>
+
 			<div role="tabpanel" class="row tab-pane" id="profile">
 				<?php 
 				$i = 0;
-				foreach ($latest_posts['result'] as $value) {
+				foreach ($popular_posts as $value) {
 				$i++;
 				?>
 				<div class="col-md-4 col-sm-6">
-					<div class="features-box wow" data-wow-delay="0.1s">
+					<div class="features-box">
 						<div class="features-icon">
 							<i class="fa fa-file">
 							</i>
@@ -148,7 +156,7 @@
 							</h4>
 							<small> <i class="fa fa-folder"></i> &nbsp; <?php echo $value->category_name ?></small>
 							<p>
-								<?php echo word_limiter($value->post_content,20); ?>
+								<?php echo word_limiter(strip_tags($value->post_content),20); ?>
 							</p>
 							<small> <i class="fa fa-user"></i> &nbsp; <?php echo $value->first_name.' '.$value->last_name ?></small>
 						</div>
@@ -251,3 +259,68 @@
 		</div>
 	</div>
 </section>
+
+<style type="text/css">
+	body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+.tabs {
+  max-width: 640px;
+}
+#tab-button {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#tab-button li {
+  display: table-cell;
+  width: 20%;
+}
+#tab-button li a {
+  display: block;
+  padding: .5em;
+  background: #eee;
+  border: 1px solid #ddd;
+  text-align: center;
+  color: #000;
+  text-decoration: none;
+}
+#tab-button li:not(:first-child) a {
+  border-left: none;
+}
+#tab-button li a:hover,
+#tab-button .is-active a {
+  border-bottom-color: transparent;
+  background: #fff;
+}
+.tab-contents {
+  padding: .5em 2em 1em;
+  border: 1px solid #ddd;
+}
+
+.tab-button-outer {
+  display: none;
+}
+.tab-contents {
+  margin-top: 20px;
+}
+@media screen and (min-width: 768px) {
+  .tab-button-outer {
+    position: relative;
+    z-index: 2;
+    display: block;
+  }
+  .tab-select-outer {
+    display: none;
+  }
+  .tab-contents {
+    position: relative;
+    top: -1px;
+    margin-top: 0;
+  }
+}
+</style>
